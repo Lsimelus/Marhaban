@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/marhaban/static/css/main.f573abbe.css",
+    "main.js": "/marhaban/static/js/main.f47aa742.js",
+    "static/js/787.65d0955c.chunk.js": "/marhaban/static/js/787.65d0955c.chunk.js",
+    "index.html": "/marhaban/index.html",
+    "main.f573abbe.css.map": "/marhaban/static/css/main.f573abbe.css.map",
+    "main.f47aa742.js.map": "/marhaban/static/js/main.f47aa742.js.map",
+    "787.65d0955c.chunk.js.map": "/marhaban/static/js/787.65d0955c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f573abbe.css",
+    "static/js/main.f47aa742.js"
+  ]
+}
