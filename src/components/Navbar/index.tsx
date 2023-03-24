@@ -21,7 +21,7 @@ import {
     Routes,
     HashRouter,
 } from "react-router-dom";
-import AppBar from '@mui/material/AppBar';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
@@ -46,17 +46,38 @@ import Badge from '@mui/material/Badge';
 import { CartContext } from '../../context';
 
 
+interface AppBarProps extends MuiAppBarProps {
+    open?: boolean;
+}
+const AppBar = styled(MuiAppBar, {
+    shouldForwardProp: (prop) => prop !== 'open',
+})<AppBarProps>(({ theme, open }) => ({
+    transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+    }),
+    ...(open && {
+        width: `calc(100% - 240px)`,
+        marginLeft: `240px`,
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    }),
+}));
+
 type NavbarProps = {
     darkModeFunction: Function,
-    darkMode: boolean
+    darkMode: boolean,
+    open: boolean,
+    setOpen: Function
 }
-const navPages: string[][] = [["Home", "/"], ["Shop", "/shop"], ["Resources", "/resouces"], ["Explore", "/explore"], ["Contact", "/contact"]]
-
 
 export const Navbar = (props: NavbarProps) => {
-    const { darkModeFunction, darkMode } = props;
-    const [cartOpen, setCartOpen] = React.useState(false)
+    const { darkModeFunction, darkMode, open, setOpen } = props;
     const location = useLocation();
+    const [cartOpen, setCartOpen] = React.useState(false)
+
 
     const getCart = (cart: any) => {
         const cartList: number[] = Object.values(cart)
@@ -74,43 +95,46 @@ export const Navbar = (props: NavbarProps) => {
     }
 
     return (
-        <>
-            <AppBar position="static" >
-                <Toolbar>
-                    <Tooltip title="~~~">
+        <AppBar position="fixed" open={open}>
+            <Toolbar>
+
+                <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={() => setOpen(!open)}
+                    edge="start"
+                    sx={{ mr: 2 }}
+                >
+                    {open ? <ChevronLeftIcon /> : <MenuIcon />}
+                </IconButton>
+
+            
+                {location.pathname !== "/" ?
+
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        Marahaban
+                    </Typography>
+                    :
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                  
+                </Typography>
+}
+                    
 
 
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            Marhaban
-                        </Typography>
 
-                    </Tooltip>
-
-                    <nav style={{ flexGrow: 1 }}>
-                        <ul style={{ display: "flex", listStyle: "none" }}>
-                            {navPages.map(function (pageInfo: string[]) {
-
-                                return (<li >
-                                    <Typography variant="h6" component="div" m={1} color={location.pathname == pageInfo[1] ? "purple" : ""}>
-                                        <Link to={pageInfo[1]}><b> {pageInfo[0]}</b></Link>
-                                    </Typography>
-                                </li>)
-                            })}
-                        </ul>
-                    </nav>
-
-                    <Drawer
-                        open={cartOpen}
-                        anchor="right"
-                        onClose={() => setCartOpen(false)}
-                        PaperProps={{
-                            sx: {
-                                width: 450
-                            }
-                        }}
-                    >
-                        <Box style={{ textAlign: "right" }}>
-                            <IconButton
+                <Drawer
+                    open={cartOpen}
+                    anchor="right"
+                    onClose={() => setCartOpen(false)}
+                    PaperProps={{
+                        sx: {
+                            width: 450
+                        }
+                    }}
+                >
+                    <Box style={{ textAlign: "right" }}>
+                        <IconButton
                             sx={{
                                 transition: "all .7s ease-in-out",
                                 color: "red",
@@ -120,56 +144,53 @@ export const Navbar = (props: NavbarProps) => {
 
                             }}
                             onClick={() => { setCartOpen(false) }}
-                            >
-                                <CloseIcon
-                                    />
-                            </IconButton>
-                        </Box>
-
-                        <CartDrawer />
-
-                    </Drawer>
+                        >
+                            <CloseIcon
+                            />
+                        </IconButton>
+                    </Box>
+                    <CartDrawer />
+                </Drawer>
 
 
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                        onClick={() => setCartOpen(true)}
-                    >
-                        <CartContext.Consumer>
-                            {(info) => (
-                                getCart(info[0])
 
-                            )}
-                        </CartContext.Consumer>
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ mr: 2 }}
+                    onClick={() => setCartOpen(true)}
+                >
+                    <CartContext.Consumer>
+                        {(info) => (
+                            getCart(info[0])
 
+                        )}
+                    </CartContext.Consumer>
+                </IconButton>
 
-                    </IconButton>
+                <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    sx={{ mr: 2 }}
+                    onClick={() => darkModeFunction(!darkMode)}
 
-                    <IconButton
-                        size="large"
-                        edge="start"
-                        color="inherit"
-                        aria-label="menu"
-                        sx={{ mr: 2 }}
-                        onClick={() => darkModeFunction(!darkMode)}
+                >
+                    {darkMode ?
+                        <Tooltip title="Change to light mode">
+                            <LightModeIcon></LightModeIcon>
+                        </Tooltip>
+                        :
+                        <Tooltip title="Change to dark mode">
+                            <DarkModeIcon></DarkModeIcon>
+                        </Tooltip>
+                    }
+                </IconButton>
+            </Toolbar>
+        </AppBar>
 
-                    >
-                        {darkMode ?
-                            <Tooltip title="Change to dark mode">
-                                <LightModeIcon></LightModeIcon>
-                            </Tooltip>
-                            :
-                            <Tooltip title="Change to light mode">
-                                <DarkModeIcon></DarkModeIcon>
-                            </Tooltip>
-                        }
-                    </IconButton>
-                </Toolbar>
-            </AppBar>
-        </>
     );
-};
+}

@@ -7,13 +7,13 @@ type HomeProps = {
 
 export const Home = (props: HomeProps) => {
   const indexOfQuote= (new Date().getDate()% home.verses.push.length)
-  console.log(indexOfQuote)
 
   return (
     <>
       <Grid
         container
         p={10}
+       
       >
         <Grid item xs={12}>
           <Typography variant="h2" >{home.title}</Typography>

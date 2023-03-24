@@ -79,13 +79,11 @@ export const CartDrawer = (props: CartDrawerProps) => {
                       let currAmount = productCart[key]
                       if (currAmount > 0) {
                         let currProduct = products[key]
-                        
-
                         console.log(key)
                         console.log(products)
                         console.log(productCart)
                         
-                        //products
+
                         return (
                           <Item style={{ margin: 10 }}>
 

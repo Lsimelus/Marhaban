@@ -18,7 +18,7 @@ export const Resources = (props: ResourcesProps) => {
     };
 
   return (
-    <Grid container justifyContent={"center"} >
+    <Grid container justifyContent={"center"} pt={10}>
       <Grid item xs={12}>
         <Typography variant="h4" sx={{ flexGrow: 1, margin: 3 }}>Frequently Asked Questions</Typography>
 

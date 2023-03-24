@@ -49,7 +49,27 @@ import { Footer } from '../Footer';
 //import { CartContext } from '../../context';
 import { CartContext } from '../../context';
 import { ButtonComponent } from '../Button';
+import {NavPages} from "../NavPages"
 
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
+    open?: boolean;
+  }>(({ theme, open }) => ({
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: `-240px`,
+    ...(open && {
+      transition: theme.transitions.create('margin', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+      marginLeft: 0,
+    }),
+  }));
 
 
 interface DashboardProps {
@@ -58,7 +78,9 @@ interface DashboardProps {
 
 export const Dashboard = (props: DashboardProps) => {
     const [prefersDarkMode, setPrefersDarkMode] = React.useState(useMediaQuery('(prefers-color-scheme: dark)'));
-    const [cart, setCart] = React.useState({"1": 0, "2":0, "3":0})
+    const [cart, setCart] = React.useState({ "1": 0, "2": 0, "3": 0 });
+    const [open, setOpen] = React.useState(false);
+
 
     const theme = React.useMemo(
         () =>
@@ -93,31 +115,40 @@ export const Dashboard = (props: DashboardProps) => {
     );
 
 
-
     return (
         <ThemeProvider theme={theme}>
             <CartContext.Provider value={[cart, setCart]}>
-        
-                    
-                <HashRouter basename="/">
-                    <div style={{ overflowX: "hidden", overflowY: "scroll", backgroundColor: "#EBEEEE", minHeight: "100vh" }}>
 
-                        <Navbar darkModeFunction={setPrefersDarkMode} darkMode={prefersDarkMode} />
+                <HashRouter basename="/">
+                    <Box sx={{ display: 'flex', overflowX: "hidden" }}>
+                        <Navbar 
+                        darkModeFunction={setPrefersDarkMode}
+                        darkMode={prefersDarkMode}
+                        open={open}
+                        setOpen={setOpen}
+                        />
+                        <NavPages open={open} setOpen={setOpen}/>
+                        <Main open={open} onClick={() => setOpen(false)}>
+
+        
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/shop" element={<Shop />} />
-                            <Route path="/resouces" element={<Resources />} />
+                            <Route path="/faq" element={<Resources />} />
                             <Route path="/explore" element={<Explore />} />
                             <Route path="/contact" element={<Contact />} />
                         </Routes>
+                        
+                        </Main>
                         <Footer />
-                    </div>
+                    </Box>
                 </HashRouter>
-                
+
             </CartContext.Provider>
         </ThemeProvider>
     );
 }
 
+//<div style={{ overflowX: "hidden", overflowY: "scroll", backgroundColor: "#EBEEEE", minHeight: "100vh" }}>
 
 

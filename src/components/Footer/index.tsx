@@ -72,6 +72,7 @@ export const Footer = (props: FooterProps) => {
     const { } = props;
     const location = useLocation();
     const [onContact, setOnContact] = React.useState(false)
+    const [display, setDisplay]  = React.useState(false)
 
     React.useEffect(() => {
         if (location.pathname === "/contact") {
@@ -82,6 +83,8 @@ export const Footer = (props: FooterProps) => {
     }, [location]);
     return (
         <Box
+        onMouseEnter={() => setDisplay(true)}
+        onMouseLeave={() => setDisplay(false)}
             sx={{
                 width: "100%",
                 height: "auto",
@@ -92,6 +95,7 @@ export const Footer = (props: FooterProps) => {
                 bottom: 0,
                 zIndex: 2,
             }}
+            
         >
             <Container >
                 <ButtonGroup sx={{
@@ -122,15 +126,17 @@ export const Footer = (props: FooterProps) => {
                         hoverColor={"#0077B5"}
                     ><TwitterIcon
                         /></FooterButton>
-
                 </ButtonGroup>
-                <Grid item xs={12}>
-                    <p> &copy; Copyright 2023 Lyndbergh George Simelus | Github | Site Code</p>
 
-                    {/*<Typography color="textSecondary" variant="subtitle1">
-                        {`${new Date().getFullYear()} |  &copy; Copyright 2023 Lyndbergh George Simelus | Material UI | React Router | Github | Site Code`}
-                </Typography>*/}
+                
+                <Grid item xs={12} >
+                    <p  style={{
+      overflow: "hidden",
+      maxHeight: display ? "100px" : "0px",
+      transition: "all 3s ease-out"
+    }}> &copy; Copyright 2023 Lyndbergh George Simelus | Github | Site Code</p>
                 </Grid>
+
 
             </Container>
         </Box>

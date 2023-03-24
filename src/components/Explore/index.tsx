@@ -257,7 +257,7 @@ export const Explore = (props: ExploreProps) => {
         <CircularProgress color="inherit" />
       </Backdrop>
 
-      <Grid container justifyContent="center">
+      <Grid container justifyContent="center" pt={10}>
 
         <Item style={{ maxWidth: "1000px" }}>
           <Grid container >
