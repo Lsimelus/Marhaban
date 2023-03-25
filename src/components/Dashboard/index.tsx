@@ -50,26 +50,9 @@ import { Footer } from '../Footer';
 import { CartContext } from '../../context';
 import { ButtonComponent } from '../Button';
 import {NavPages} from "../NavPages"
+import {Main} from "../../styles/Dashboard"
 
 
-const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
-    open?: boolean;
-  }>(({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-240px`,
-    ...(open && {
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  }));
 
 
 interface DashboardProps {
@@ -89,6 +72,9 @@ export const Dashboard = (props: DashboardProps) => {
                     mode: prefersDarkMode ? 'dark' : 'light',
                     divider: "3f51b5"
                 },
+                typography: {
+                    fontFamily: "Lucida"
+                },
                 components: {
                     MuiButton: {
                         defaultProps: {
@@ -107,8 +93,6 @@ export const Dashboard = (props: DashboardProps) => {
 
                     }
                 }
-
-
             }
             ),
         [prefersDarkMode],
@@ -120,15 +104,16 @@ export const Dashboard = (props: DashboardProps) => {
             <CartContext.Provider value={[cart, setCart]}>
 
                 <HashRouter basename="/">
-                    <Box sx={{ display: 'flex', overflowX: "hidden" }}>
+                    <Box sx={{ display: 'flex', overflowX: "hidden", backgroundColor: "beige", height: "100vh" }}>
                         <Navbar 
                         darkModeFunction={setPrefersDarkMode}
                         darkMode={prefersDarkMode}
                         open={open}
                         setOpen={setOpen}
+
                         />
                         <NavPages open={open} setOpen={setOpen}/>
-                        <Main open={open} onClick={() => setOpen(false)}>
+                        <Main open={open} onClick={() => setOpen(false)} >
 
         
                         <Routes>

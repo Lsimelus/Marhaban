@@ -44,14 +44,15 @@ import { useContext } from 'react';
 import { CartDrawer } from '../CartDrawer';
 import Badge from '@mui/material/Badge';
 import { CartContext } from '../../context';
-
+import { getCartSize } from "../../utils/cartUtil"
 
 interface AppBarProps extends MuiAppBarProps {
-    open?: boolean;
+    open?: boolean,
+    boxShadow?: boolean
 }
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
-})<AppBarProps>(({ theme, open }) => ({
+})<AppBarProps>(({ theme, open , boxShadow}) => ({
     transition: theme.transitions.create(['margin', 'width'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -64,6 +65,8 @@ const AppBar = styled(MuiAppBar, {
             duration: theme.transitions.duration.enteringScreen,
         }),
     }),
+    background: "beige",
+    boxShadow: boxShadow ? "none": "auto"
 }));
 
 type NavbarProps = {
@@ -78,24 +81,17 @@ export const Navbar = (props: NavbarProps) => {
     const location = useLocation();
     const [cartOpen, setCartOpen] = React.useState(false)
 
-
     const getCart = (cart: any) => {
-        const cartList: number[] = Object.values(cart)
-
-        var total = 0
-        for (var i in Object.values(cart)) {
-            total += cartList[i];
-        }
+        var cartTotal = getCartSize(cart)
         return (
-            <Badge badgeContent={total} color="error" >
+            <Badge badgeContent={cartTotal} color="error" >
                 <ShoppingCartIcon />
             </Badge>
         )
-
     }
 
     return (
-        <AppBar position="fixed" open={open}>
+        <AppBar position="fixed" open={open} boxShadow={location.pathname === "/"}>
             <Toolbar>
 
                 <IconButton
@@ -103,25 +99,20 @@ export const Navbar = (props: NavbarProps) => {
                     aria-label="open drawer"
                     onClick={() => setOpen(!open)}
                     edge="start"
-                    sx={{ mr: 2 }}
+                    sx={{ mr: 2, color: "brown"}}
                 >
                     {open ? <ChevronLeftIcon /> : <MenuIcon />}
                 </IconButton>
 
-            
-                {location.pathname !== "/" ?
 
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                {location.pathname !== "/" ?
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "brown" }}>
                         Marahaban
                     </Typography>
                     :
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  
-                </Typography>
-}
-                    
-
-
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "brown" }}>
+                    </Typography>
+                }
 
                 <Drawer
                     open={cartOpen}
@@ -152,14 +143,12 @@ export const Navbar = (props: NavbarProps) => {
                     <CartDrawer />
                 </Drawer>
 
-
-
                 <IconButton
                     size="large"
                     edge="start"
                     color="inherit"
                     aria-label="menu"
-                    sx={{ mr: 2 }}
+                    sx={{ mr: 2, color: "brown" }}
                     onClick={() => setCartOpen(true)}
                 >
                     <CartContext.Consumer>
@@ -175,8 +164,9 @@ export const Navbar = (props: NavbarProps) => {
                     edge="start"
                     color="inherit"
                     aria-label="menu"
-                    sx={{ mr: 2 }}
+                    sx={{ mr: 2 , color: "brown"}}
                     onClick={() => darkModeFunction(!darkMode)}
+
 
                 >
                     {darkMode ?

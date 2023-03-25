@@ -11,11 +11,11 @@ export const home = {
 }
 
 
-export const products : {[key in productIds]: {id: string;title: string; price: string; img: string; items: any; desc: string; }} = {
+export const products : {[key in productIds]: {id: string;title: string; price: number; img: string; items: any; desc: string; }} = {
     "1" :{
         "id" : "1",
         "title": "Explore",
-        "price": "$250",
+        "price": 9.99,
         "img": "../../assets/test.jpg",
         "items": {
             "itjknbem": "https://mui.com/material-ui/react-button-group/",
@@ -29,7 +29,7 @@ export const products : {[key in productIds]: {id: string;title: string; price: 
     "2" :{
         "id" : "2",
         "title": "hjfjhfjy",
-        "price": "hjvjfv",
+        "price": 19.99,
         "img": "../../assets/test.jpg",
         "items": {
             "itjknbem": "https://mui.com/material-ui/react-button-group/",
@@ -43,7 +43,7 @@ export const products : {[key in productIds]: {id: string;title: string; price: 
     "3" :{
         "id" :"3",
         "title": "hjfjhfjy",
-        "price": "hjvjfv",
+        "price": 24.99,
         "img": "../../assets/test.jpg",
         "items": {
             "itjknbem": "https://mui.com/material-ui/react-button-group/",

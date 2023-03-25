@@ -80,8 +80,6 @@ export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) 
 
       <Grid
         container
-        direction="row"
-        maxWidth="xl"
         spacing={5}
         p={8}
         alignItems="center"
@@ -144,73 +142,6 @@ export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) 
           </Item>
         </Grid>
 
-        {/*
-          <Grid item xs={12} md={4} >
-            <Item elevation={16}>
-              <Grid item xs={12} >
-                <h1 >Contact</h1>
-                <p><b>781-350-8711</b></p>
-                <p ><b>lsimelus@gmail.com</b></p>
-              </Grid>
-
-              <div>
-
-                <TranslateButton>
-                  <EmailIcon
-                    onClick={() => window.open(links.mailto, "_blank")}
-                    sx={{
-                      fontSize: 100,
-                      color: "gray",
-                      "&:hover": {
-                        color: "#EA4336"
-                      },
-                    }} />
-                </TranslateButton>
-
-                <TranslateButton onClick={() => window.open(links.main, "_blank")}>
-                  <GitHubIcon sx={{
-                    fontSize: 100,
-                    color: "gray",
-                    "&:hover": {
-                      color: "#7241C8"
-                    },
-                  }} />
-                </TranslateButton>
-                <TranslateButton
-                  onClick={() => window.open(links.tel, "_blank")}
-                >
-                  <LocalPhoneIcon sx={{
-                    fontSize: 100,
-                    color: "gray",
-                    "&:hover": {
-                      color: "#1CC838"
-                    },
-                  }} />
-                </TranslateButton>
-                <TranslateButton
-                  onClick={() => window.open(links.linkedin, "_blank")}>
-                  <LinkedInIcon sx={{
-                    fontSize: 100,
-                    color: "gray",
-                    "&:hover": {
-                      color: "#0077B5"
-                    },
-                  }} />
-                </TranslateButton>
-              </div>
-            </Item>
-
-          </Grid>
-          <Grid item xs={12}  >
-            <Box
-              textAlign="center"
-              justifyContent="center"
-            >
-              <ButtonComponent onClick={() => handleClickScroll("Home")}>
-                <KeyboardArrowUpIcon />
-                </ButtonComponent>
-            </Box>
-          </Grid>*/}
       </Grid>
 
     </>

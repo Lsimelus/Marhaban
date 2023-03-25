@@ -107,15 +107,7 @@ export const NavPages = (props: NavPagesProps) => {
             open={open}
 
         >
-            <DrawerHeader>
-                <Typography
-                    component="h1"
-                    variant="h6"
-                    sx={{ flexGrow: 1 }}
-                >
-                    All Tools
-                </Typography>
-            </DrawerHeader>
+  
             <Divider />
             <List component="nav" subheader={<li />}>
                 {navPages.map(function (pageInfo: string[]) {

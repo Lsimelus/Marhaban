@@ -72,7 +72,7 @@ export const Product = (props: ProductsProps) => {
 
       </ProductBox>
       <p><b>{data.title}</b></p>
-      <p><b>{data.price}</b></p>
+      <p><b>${data.price}</b></p>
       <ProductDiv show={showDetails}>
         <Divider />
         <b>
