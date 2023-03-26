@@ -86,7 +86,7 @@ export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) 
         justifyContent="center"
       >
         <Grid item xs={12}>
-          <Typography variant="h5" sx={{ flexGrow: 1 }}>Questions and Suggestions</Typography>
+          <Typography variant="h5" sx={{ flexGrow: 1, color: "brown"}}>Questions and Suggestions</Typography>
         </Grid>
 
         <Grid item xs={12} md={8} >

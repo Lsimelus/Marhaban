@@ -13,14 +13,12 @@ export const Home = (props: HomeProps) => {
       <Grid
         container
         p={10}
-        
-       
       >
         <Grid item xs={12}>
-          <Typography variant="h2" sx={{textShadow: "0 0 4px #FFD700"}} >{home.title}</Typography>
+          <Typography variant="h2" sx={{textShadow: "0 0 4px black", color: "#FFD700"}} >{home.title}</Typography>
         </Grid>
         <Grid item xs={12}>
-          <Typography variant="h4" >{home.subTitle}</Typography>
+          <Typography variant="h4" sx={{textShadow: "0 0 4px #FFD700"}} >{home.subTitle}</Typography>
         </Grid>
         <Grid item xs={12} m={5}>
 

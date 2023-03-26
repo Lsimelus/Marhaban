@@ -70,7 +70,7 @@ export const Dashboard = (props: DashboardProps) => {
             createTheme({
                 palette: {
                     mode: prefersDarkMode ? 'dark' : 'light',
-                    divider: "3f51b5"
+                    divider: "3f51b5",
                 },
                 typography: {
                     fontFamily: "Lucida"

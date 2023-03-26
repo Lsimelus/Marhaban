@@ -45,6 +45,8 @@ import { CartDrawer } from '../CartDrawer';
 import Badge from '@mui/material/Badge';
 import { CartContext } from '../../context';
 import { getCartSize } from "../../utils/cartUtil"
+import AddIcon from '@mui/icons-material/Add';
+
 
 interface AppBarProps extends MuiAppBarProps {
     open?: boolean,
@@ -84,7 +86,7 @@ export const Navbar = (props: NavbarProps) => {
     const getCart = (cart: any) => {
         var cartTotal = getCartSize(cart)
         return (
-            <Badge badgeContent={cartTotal} color="error" >
+            <Badge badgeContent={cartTotal} color="secondary" >
                 <ShoppingCartIcon />
             </Badge>
         )
@@ -95,13 +97,11 @@ export const Navbar = (props: NavbarProps) => {
             <Toolbar>
 
                 <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
                     onClick={() => setOpen(!open)}
                     edge="start"
                     sx={{ mr: 2, color: "brown"}}
                 >
-                    {open ? <ChevronLeftIcon /> : <MenuIcon />}
+                    {open ? <ChevronLeftIcon /> : <AddIcon/>}
                 </IconButton>
 
 
@@ -154,7 +154,6 @@ export const Navbar = (props: NavbarProps) => {
                     <CartContext.Consumer>
                         {(info) => (
                             getCart(info[0])
-
                         )}
                     </CartContext.Consumer>
                 </IconButton>
@@ -162,8 +161,6 @@ export const Navbar = (props: NavbarProps) => {
                 <IconButton
                     size="large"
                     edge="start"
-                    color="inherit"
-                    aria-label="menu"
                     sx={{ mr: 2 , color: "brown"}}
                     onClick={() => darkModeFunction(!darkMode)}
 

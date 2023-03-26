@@ -21,7 +21,7 @@ import { CartContext } from '../../context';
 import { productIds } from '../../@types';
 import { SetStateAction } from 'react';
 import { products } from '../../data/data';
-import { getCartSize } from "../../utils/cartUtil"
+import { getCartSize, getCartTotal } from "../../utils/cartUtil"
 
 
 const Demo = styled('div')(({ theme }) => ({
@@ -160,10 +160,10 @@ export const CartDrawer = (props: CartDrawerProps) => {
                         >
                           <ListItemText
                             primary="Total"
-                            secondary={"3 items"}
+                            secondary={getCartSize(info[0]) +" items"}
                           />
                           <ListItemText
-                            primary="$99.99"
+                            primary={getCartTotal(info[0])}
                           />
                         </ListItem>
 
@@ -173,11 +173,7 @@ export const CartDrawer = (props: CartDrawerProps) => {
                 </>
                 :
                 <Grid item xs={12} m={2}>Your cart is Empty.</Grid>
-
               }
-
-
-
             </>
           )}
         </CartContext.Consumer>

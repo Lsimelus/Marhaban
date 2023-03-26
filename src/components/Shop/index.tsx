@@ -20,7 +20,7 @@ export const Shop = (props: ShopProps) => {
 
         {Object.values(products).map(function (item: any) {
           return (
-            <Grid item xs={6} md={4} lg={3}>
+            <Grid item xs={6} sm={4} lg={3}>
               <Item>
                 <Product data={item} image={test}></Product>
               </Item>

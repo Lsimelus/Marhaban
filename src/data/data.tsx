@@ -1,4 +1,4 @@
-import { productIds } from "../@types"
+import { productIds, product } from "../@types"
 
 export const verses = ["Verse 1", "Verse 2", "Verse 3"]
 export const homeBlurb = "estibulum lacinia tellus non nunc ornare, eget condimentum ipsum pulvinar. Maecenas consectetur leo vel ex semper ultrices. Phasellus ornare ipsum venenatis vestibulum auctor. Nullam efficitur maximus lectus, quis sagittis nisl sodales ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquam porta purus, id pellentesque eros ornare in. In hac habitasse plate"
@@ -11,7 +11,7 @@ export const home = {
 }
 
 
-export const products : {[key in productIds]: {id: string;title: string; price: number; img: string; items: any; desc: string; }} = {
+export const products : product = {
     "1" :{
         "id" : "1",
         "title": "Explore",

@@ -112,9 +112,24 @@ export const NavPages = (props: NavPagesProps) => {
             <List component="nav" subheader={<li />}>
                 {navPages.map(function (pageInfo: string[]) {
 
+                    if (location.pathname === pageInfo[1]){
+                        return (
+                            <Link to={pageInfo[1]}>
+                                <ListItem sx={{color: "brown"}} disablePadding>
+                                    <ListItemButton>
+                                        <ListItemIcon sx={{color: "brown"}}>
+                                            {pageInfo[2]}
+                                        </ListItemIcon>
+                                        <ListItemText primary={pageInfo[0]} />
+                                    </ListItemButton>
+                                </ListItem>
+                            </Link>
+                        )
+                    }
+
                     return (
                         <Link to={pageInfo[1]}>
-                            <ListItem disablePadding>
+                            <ListItem onClick={() => setOpen(false)} disablePadding>
                                 <ListItemButton>
                                     <ListItemIcon>
                                         {pageInfo[2]}
