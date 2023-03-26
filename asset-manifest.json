@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Marhaban/static/css/main.e0b3b7e3.css",
-    "main.js": "/Marhaban/static/js/main.3efa5e5c.js",
+    "main.js": "/Marhaban/static/js/main.fd504330.js",
     "static/js/787.65d0955c.chunk.js": "/Marhaban/static/js/787.65d0955c.chunk.js",
     "static/media/test.jpg": "/Marhaban/static/media/test.a1760defa39d569d2d56.jpg",
     "index.html": "/Marhaban/index.html",
     "main.e0b3b7e3.css.map": "/Marhaban/static/css/main.e0b3b7e3.css.map",
-    "main.3efa5e5c.js.map": "/Marhaban/static/js/main.3efa5e5c.js.map",
+    "main.fd504330.js.map": "/Marhaban/static/js/main.fd504330.js.map",
     "787.65d0955c.chunk.js.map": "/Marhaban/static/js/787.65d0955c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e0b3b7e3.css",
-    "static/js/main.3efa5e5c.js"
+    "static/js/main.fd504330.js"
   ]
 }
