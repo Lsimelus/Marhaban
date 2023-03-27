@@ -1,6 +1,7 @@
 import { productIds} from "../@types";
 import { products } from "../data/data"
 
+
 export const getCartSize = (cartList: any) => {
     var total = 0
     for (var i in cartList) {
@@ -8,6 +9,7 @@ export const getCartSize = (cartList: any) => {
     }
     return total
 }
+
 
 export const getCartTotal = (cartList: {[key in productIds] : number}) => {
     var total = 0

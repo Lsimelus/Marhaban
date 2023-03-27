@@ -34,7 +34,7 @@ type CartDrawerProps = {
 export const CartDrawer = (props: CartDrawerProps) => {
 
   const cartModify = (cart: { 1: number; 2: number; 3: number; }, setCart: React.Dispatch<SetStateAction<{ 1: number; 2: number; 3: number; }>>, key: productIds, change: number) => {
-    if (change == 0) {
+    if (change === 0) {
       setCart(prevState => {
         prevState[key] = 0
         return { ...prevState }
@@ -45,9 +45,7 @@ export const CartDrawer = (props: CartDrawerProps) => {
         prevState[key] = cart[key] + change
         return { ...prevState }
       })
-
     }
-
   }
 
   return (
@@ -68,7 +66,7 @@ export const CartDrawer = (props: CartDrawerProps) => {
                   <Grid item xs={12} m={2}>
                     <Demo>
                       <List >
-                        {Object.keys(info[0]).map(function (data: any) {
+                        {Object.keys(info[0]).map(function(data: any) {
                           let productCart = info[0]
                           let key = data as productIds
                           let currAmount = productCart[key]
@@ -101,8 +99,6 @@ export const CartDrawer = (props: CartDrawerProps) => {
                                     <Avatar src={test}>
                                     </Avatar>
                                   </ListItemAvatar>
-
-
                                   <ListItemText
                                     primary={currProduct["title"]}
                                     secondary={"$" + currProduct["price"]}
@@ -111,14 +107,12 @@ export const CartDrawer = (props: CartDrawerProps) => {
                                   <ListItemAvatar>
                                     <Avatar>
                                       <IconButton
-
                                         onClick={
                                           () => cartModify(info[0], info[1], key, 1)
                                         }>
                                         <ArrowDropUpIcon
                                         />
                                       </IconButton>
-
                                     </Avatar>
 
                                     <Avatar>

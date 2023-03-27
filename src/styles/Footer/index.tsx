@@ -7,7 +7,7 @@ export const FooterButton = (props: { hoverColor: any; onPage:boolean; children:
 
   <Button 
   sx={{ 
-    color: props.onPage ? props.hoverColor :"gray",
+    color: props.onPage ? props.hoverColor :"beige",
     transition: "transform 1s",
 
     ':hover': {

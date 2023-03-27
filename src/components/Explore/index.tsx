@@ -7,12 +7,10 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import ReactCountryFlag from "react-country-flag"
 import { Item } from "../../styles/Item"
-import { Stack, Tooltip, Typography } from "@mui/material";
+import { Tooltip, Typography } from "@mui/material";
 import { explore } from "../../data/data"
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import { ResourceArticle } from "../ResourceArticle"
-import Box from '@mui/system/Box';
 import Divider from '@mui/material/Divider';
 
 
@@ -291,7 +289,7 @@ export const Explore = (props: ExploreProps) => {
             <Grid item xs={12} md={6}>
               <Typography variant="h5" >Select a Country:</Typography>
 
-              {explore.country.map(function (info: string[], idx: number) {
+              {explore.country.map(function (info: string[]) {
                 return (
                   <Tooltip title={info[1]}>
                     <span onClick={() => info[0] == country ? setCountry("") : setCountry(info[0])}
@@ -309,13 +307,20 @@ export const Explore = (props: ExploreProps) => {
         </Item>
 
         {data && Object.keys(data).length > 0 &&
-
-          <div style={{ paddingBottom: "120px", textAlign: "left", maxWidth: "600px" }}>
-            {data.articles.map(function (info: any, idx: number) {
+          <div style={{ 
+            textAlign: "left",
+             maxWidth: "800px",
+              minHeight: "360px",
+               maxHeight: "600px",
+                 overflowY: "scroll",
+                  margin: "50px",
+                   marginBottom: "100px",
+                    }}>
+            {data.articles.map(function (info: any) {
               return (
-
                 <Item style={{ margin: 10, padding: 15 }}>
-                  <Typography variant="h6" sx={{
+                  <Typography variant="h6" 
+                  sx={{
                     textDecoration: "underline",
                     display: "inline",
                     textOverflow: "ellipsis",
@@ -324,18 +329,15 @@ export const Explore = (props: ExploreProps) => {
                     ':hover': {
                       color: "blue",
                     },
-
                   }}>
                     <b><a href={info.url}>{info.title}</a></b>
                   </Typography>
+
                   {info.description &&
-                    <>
-                      <p>{info.description}</p>
-
-                    </>
+                    <p>{info.description}</p>
                   }
-                  <Divider />
 
+                  <Divider />
                   <p>{info.author}</p>
                   <p>{info.publishedAt.slice(0, 10)}</p>
                 </Item>

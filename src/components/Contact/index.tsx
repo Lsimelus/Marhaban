@@ -3,22 +3,10 @@ import React from "react";
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import EmailIcon from '@mui/icons-material/Email';
-import PeopleIcon from '@mui/icons-material/People';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-//import { TranslateButton} from "../../styles/commonUIComponents/ButtonStyled"
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-//import { handleClickScroll } from "../../utils/reusableFunctions"
-//import {links} from "../../data/data"
-//import axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 import { ButtonComponent } from "../Button"
-import { Stack, Tooltip, Typography } from "@mui/material";
-
-
+import { Typography } from "@mui/material";
 
 
 type ContactProps = {
@@ -127,17 +115,16 @@ export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) 
                   fontSize: 60,
                   color: "green"
                 }} />
-
                 :
                 <ButtonComponent
                   onClick={() => console.log()}
                   text={"Submit"}
                 />
               }
+              
               {buffering &&
                 < CircularProgress />
               }
-
             </Box>
           </Item>
         </Grid>

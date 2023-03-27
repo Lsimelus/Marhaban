@@ -25,7 +25,6 @@ type ButtonComponentProps = {
         variant={variant}
         startIcon={startIcon}
         onClick={() => onClick && onClick()}
-        size="large"
       >
         {children}
         <b>{text}</b>
