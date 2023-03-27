@@ -1,4 +1,3 @@
-// @ts-ignore
 import Grid from '@mui/material/Grid';
 import * as React from 'react';
 import MenuItem from '@mui/material/MenuItem';
@@ -12,7 +11,11 @@ import { explore } from "../../data/data"
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Divider from '@mui/material/Divider';
-
+import axios from 'axios';
+import Box from '@mui/material/Box';
+import CloseIcon from "@mui/icons-material/Close";
+import { IconButton } from '@mui/material';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 const API = {
   status: 'ok',
@@ -236,10 +239,24 @@ export const Explore = (props: ExploreProps) => {
     setCat(event.target.value as string)
   }
 
+  const getNews = () => {
+    axios.post(`https://personal-api-lwmg.onrender.com/getnews`, {
+      country: country,
+      cat: explore.category[parseInt(cat)],
+      app: "marhaban"
+    })
+      .then(res => {
+        setData(res.data)
+      }).catch(function (error) {
+        console.log(error)
+      });
+  }
+
   React.useEffect(() => {
     // Runs ONCE after initial rendering
     if (!(cat === "" || country === "")) {
-      setData(API)
+      //console.log(cat, country, explore.category[parseInt(cat)])
+      getNews()
     } else {
       setData(null)
     }
@@ -264,7 +281,7 @@ export const Explore = (props: ExploreProps) => {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <Typography variant="h5" >Select a Category:</Typography>
+              <Typography variant="h5">Select a Category:</Typography>
 
               <FormControl required sx={{ m: 1, minWidth: 120 }}>
                 <Select
@@ -292,58 +309,79 @@ export const Explore = (props: ExploreProps) => {
               {explore.country.map(function (info: string[]) {
                 return (
                   <Tooltip title={info[1]}>
-                    <span onClick={() => info[0] == country ? setCountry("") : setCountry(info[0])}
+                    <span onClick={() => info[0] === country ? setCountry("") : setCountry(info[0])}
                     >
                       <ReactCountryFlag countryCode={info[0]}
-                        style={{ cursor: "pointer", fontSize: "5vw", opacity: country == info[0] ? 1 : .3 }}
+                        style={{ cursor: "pointer", fontSize: "5vw", opacity: country === info[0] ? 1 : .3 }}
                       />
                     </span>
                   </Tooltip>
                 )
               })}
             </Grid>
+            <Grid item xs={12}>
+              {data &&
+
+                <Box>
+                  <IconButton 
+                  onClick={() => {setData(null); setCat(""); setCountry("");}}>
+                    <RestartAltIcon
+                    />
+                  </IconButton>
+                </Box>
+
+              }
+            </Grid>
 
           </Grid>
         </Item>
 
+
+
+
         {data && Object.keys(data).length > 0 &&
-          <div style={{ 
+          <Grid container justifyContent="center" mt={10} style={{
             textAlign: "left",
-             maxWidth: "800px",
-              minHeight: "360px",
-               maxHeight: "600px",
-                 overflowY: "scroll",
-                  margin: "50px",
-                   marginBottom: "100px",
-                    }}>
+            width: "60vw",
+            height: "65vh",
+            overflowY: "scroll",
+            margin: "50px",
+            marginBottom: "130px",
+          }}>
+
             {data.articles.map(function (info: any) {
               return (
-                <Item style={{ margin: 10, padding: 15 }}>
-                  <Typography variant="h6" 
-                  sx={{
-                    textDecoration: "underline",
-                    display: "inline",
-                    textOverflow: "ellipsis",
-                    overflow: "hidden",
-                    whiteSpace: "nowrap",
-                    ':hover': {
-                      color: "blue",
-                    },
-                  }}>
-                    <b><a href={info.url}>{info.title}</a></b>
-                  </Typography>
+                <Grid item xs={12}>
 
-                  {info.description &&
-                    <p>{info.description}</p>
-                  }
+                  <Item style={{ margin: 10, padding: 15 }}>
+                    <Typography variant="h6"
+                      sx={{
+                        textDecoration: "underline",
+                        display: "inline",
+                        textOverflow: "ellipsis",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                        ':hover': {
+                          color: "blue",
+                        },
+                      }}>
+                      <b><a href={info.url}>{info.title}</a></b>
+                    </Typography>
 
-                  <Divider />
-                  <p>{info.author}</p>
-                  <p>{info.publishedAt.slice(0, 10)}</p>
-                </Item>
+                    {info.description &&
+                      <p>{info.description}</p>
+                    }
+
+                    <Divider />
+                    <p>{info.author}</p>
+                    <p>{info.publishedAt.slice(0, 10)}</p>
+                  </Item>
+                </Grid>
               )
             })}
-          </div>
+
+
+          </Grid>
         }
       </Grid>
     </>

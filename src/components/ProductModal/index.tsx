@@ -49,7 +49,6 @@ export const ProductModal = (props: ProductModalProps) => {
           </Box>
           <Grid container >
             <Grid item xs={8} p={3}>
-
               <img
                 style={{
                   flex: 1,
@@ -65,7 +64,6 @@ export const ProductModal = (props: ProductModalProps) => {
               <Box
                 justifyContent={"space-between"}
               >
-
                   <b>
                     What is included?
                   </b>
@@ -87,10 +85,6 @@ export const ProductModal = (props: ProductModalProps) => {
           <p><b>Who is this for: </b> {data.desc}</p>
 
           </Grid>
-
-
-          
-
         </Box>
       </Modal>
     </>

@@ -35,7 +35,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 
-const navPages: any[][] = [["Home", "/",  <HomeIcon/>], ["Shop", "/shop", <ShoppingBasketIcon/>], ["FAQ", "/faq", <HelpIcon/>], ["Explore", "/explore",  <ExploreIcon/>], ["Contact", "/contact", <ContactsIcon/>]]
+const navPages: any[][] = [["Home", "/",  <HomeIcon/>], ["FAQ", "/faq", <HelpIcon/>], ["Shop", "/shop", <ShoppingBasketIcon/>],["Explore", "/explore",  <ExploreIcon/>], ["Contact", "/contact", <ContactsIcon/>]]
 
 type NavPagesProps = {
     open: boolean,
@@ -79,7 +79,6 @@ export const NavPages = (props: NavPagesProps) => {
                             </Link>
                         )
                     }
-
                     return (
                         <Link to={pageInfo[1]}>
                             <ListItem onClick={() => setOpen(false)} disablePadding>

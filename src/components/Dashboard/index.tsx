@@ -10,7 +10,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { Navbar } from '../Navbar';
 import { Home } from "../Home"
 import { Shop } from "../Shop"
-import { Resources } from '../Resources';
+import { Resources } from '../Faq';
 import { Explore } from '../Explore';
 import { Contact } from '../Contact';
 import { Footer } from '../Footer';

@@ -86,16 +86,17 @@ export const explore = {
         "general",
         "business",
         "entertainment",
-
-        "health", "science",
-        "sports", "technology"
+        "health",
+        "science",
+        "sports",
+        "technology"
     ],
     "country": [
-        ["ID", "Indonesia"],
-        ["AE", "United States Emirates"],
-        ["ZA", "South Africa"],
-        ["MA", "Morocco"],
-        ["EG", "Egypt"]]
+        ["id", "Indonesia"],
+        ["ae", "United States Emirates"],
+        ["za", "South Africa"],
+        ["ma", "Morocco"],
+        ["eg", "Egypt"]]
 }
 
 
