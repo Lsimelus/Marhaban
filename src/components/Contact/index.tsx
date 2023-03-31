@@ -7,31 +7,25 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CircularProgress from '@mui/material/CircularProgress';
 import { ButtonComponent } from "../Button"
 import { Typography } from "@mui/material";
+import Backdrop from '@mui/material/Backdrop';
+import axios from 'axios';
 
 
 type ContactProps = {
+  alertCallback: Function
 }
 
 
 
 export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) => {
-  //const { alertCallback, subjectFilled = "" } = props;
+  const { alertCallback } = props;
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
-  const [subject, setSubject] = React.useState<String>("");
   const [message, setMessage] = React.useState("");
   const [formDone, setFormDone] = React.useState(false);
   const [buffering, setBuffering] = React.useState(false);
   const [formEmpty, setFormEmpty] = React.useState(false);
 
-  /*React.useEffect(() => {
-    setSubject(subjectFilled)
-    setName("")
-    setEmail("")
-    setMessage("")
-    setFormDone(false)
-
-  }, [subjectFilled]);
 
   function processForm() {
     setFormEmpty(false)
@@ -48,8 +42,8 @@ export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) 
       axios.post(`https://portfolio-webapp-pf4y.onrender.com/processform`, {
         name: name,
         email: email,
-        subject: subject,
-        message: message
+        message: message,
+        app: "marhaban"
       })
         .then(res => {
           setFormDone(true)
@@ -61,7 +55,7 @@ export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) 
         });
 
     }
-  }*/
+  }
 
   return (
     <>
@@ -117,14 +111,17 @@ export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) 
                 }} />
                 :
                 <ButtonComponent
-                  onClick={() => console.log()}
+                  onClick={() => processForm()}
                   text={"Submit"}
                 />
               }
               
-              {buffering &&
-                < CircularProgress />
-              }
+              <Backdrop
+              sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={buffering}
+            >
+              <CircularProgress color="inherit" />
+            </Backdrop>
             </Box>
           </Item>
         </Grid>

@@ -10,11 +10,12 @@ type ButtonComponentProps = {
     text?: string,
     background?: string,
     key?: number,
-    variant?: "contained" | "outlined" | "text"
+    variant?: "contained" | "outlined" | "text",
+    disabled?: boolean
   }
   
   export const ButtonComponent = (props: ButtonComponentProps) => {
-    const { startIcon, onClick, text, children, background, key, variant = "contained" } = props;
+    const { startIcon, onClick, text, children, background, key, disabled=false,variant = "contained" } = props;
   
     return (
       <StyledButton
@@ -25,6 +26,7 @@ type ButtonComponentProps = {
         variant={variant}
         startIcon={startIcon}
         onClick={() => onClick && onClick()}
+        disabled={disabled}
       >
         {children}
         <b>{text}</b>

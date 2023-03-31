@@ -46,11 +46,12 @@ type NavbarProps = {
     darkModeFunction: Function,
     darkMode: boolean,
     open: boolean,
-    setOpen: Function
+    setOpen: Function,
+    alertCallback: Function
 }
 
 export const Navbar = (props: NavbarProps) => {
-    const { darkModeFunction, darkMode, open, setOpen } = props;
+    const { darkModeFunction, darkMode, open, setOpen , alertCallback} = props;
     const location = useLocation();
     const [cartOpen, setCartOpen] = React.useState(false)
 
@@ -111,7 +112,7 @@ export const Navbar = (props: NavbarProps) => {
                             />
                         </IconButton>
                     </Box>
-                    <CartDrawer />
+                    <CartDrawer alertCallback={alertCallback}/>
                 </Drawer>
 
                 <IconButton

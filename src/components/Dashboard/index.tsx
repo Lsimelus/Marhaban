@@ -17,8 +17,8 @@ import { Footer } from '../Footer';
 import { CartContext } from '../../context';
 import {NavPages} from "../NavPages"
 import {Main} from "../../styles/Dashboard"
-
-
+import axios from 'axios';
+import {AlertDiv,  alertType} from "../Alert"
 
 interface DashboardProps {
 }
@@ -28,6 +28,17 @@ export const Dashboard = (props: DashboardProps) => {
     const [prefersDarkMode, setPrefersDarkMode] = React.useState(useMediaQuery('(prefers-color-scheme: dark)'));
     const [cart, setCart] = React.useState({ "1": 0, "2": 0, "3": 0 });
     const [open, setOpen] = React.useState(false);
+
+
+    const [alertText, setAlertText] = React.useState("")
+  const [alertSeverity, setAlertSeverity] = React.useState<alertType>("success")//:TODO implement
+  const [alertOpen, setAlertOpen] = React.useState(false)
+
+  function openAlert(text: string, severity: alertType) {
+    setAlertSeverity(severity)
+    setAlertText(text)
+    setAlertOpen(true)
+  }
 
     const theme = React.useMemo(
         () =>
@@ -61,6 +72,17 @@ export const Dashboard = (props: DashboardProps) => {
         [prefersDarkMode],
     );
 
+      React.useEffect(() => {
+        //Wake up API listener so other API calls are more quicker
+        axios.get(`https://personal-api-lwmg.onrender.com/api`)
+          .then(res => {
+            console.log(res)
+          }).catch(function (error) {
+            console.log(error)
+          });
+
+      }, []);
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -73,16 +95,23 @@ export const Dashboard = (props: DashboardProps) => {
                         darkMode={prefersDarkMode}
                         open={open}
                         setOpen={setOpen}
+                        alertCallback={openAlert}
                         />
                         <NavPages open={open} setOpen={setOpen}/>
                         <Main open={open} onClick={() => setOpen(false)} >
+                        <AlertDiv
+                            openAlert={alertOpen}
+                            severity={alertSeverity}
+                            alertText={alertText}
+                            parentCallback={setAlertOpen}
+                        />
 
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/shop" element={<Shop />} />
                             <Route path="/faq" element={<Resources />} />
                             <Route path="/explore" element={<Explore />} />
-                            <Route path="/contact" element={<Contact />} />
+                            <Route path="/contact" element={<Contact alertCallback={openAlert}/>} />
                         </Routes>
                         
                         </Main>

@@ -22,6 +22,8 @@ import { productIds } from '../../@types';
 import { SetStateAction } from 'react';
 import { products } from '../../data/data';
 import { getCartSize, getCartTotal } from "../../utils/cartUtil"
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 const Demo = styled('div')(({ theme }) => ({
@@ -29,9 +31,13 @@ const Demo = styled('div')(({ theme }) => ({
 }));
 
 type CartDrawerProps = {
+  alertCallback: Function
 }
 
 export const CartDrawer = (props: CartDrawerProps) => {
+  const { alertCallback} = props;
+  const [stock, setStock] = React.useState(false);
+  const [buffering, setBuffering] = React.useState(false);
 
   const cartModify = (cart: { 1: number; 2: number; 3: number; }, setCart: React.Dispatch<SetStateAction<{ 1: number; 2: number; 3: number; }>>, key: productIds, change: number) => {
     if (change === 0) {
@@ -48,8 +54,17 @@ export const CartDrawer = (props: CartDrawerProps) => {
     }
   }
 
+
+
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
+        <Backdrop
+              sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={buffering}
+            >
+              <CircularProgress color="inherit" />
+            </Backdrop>
+
 
       <Grid container spacing={2}>
         <CartContext.Consumer>
@@ -75,10 +90,10 @@ export const CartDrawer = (props: CartDrawerProps) => {
                             let currProduct = products[key]
                             return (
                               <Item style={{ margin: 10 }}>
-
                                 <ListItem
                                   secondaryAction={
                                     <IconButton edge="end"
+                                    disabled={stock}
                                       onClick={() => info[1](prevState => {
                                         prevState[key] = 0
                                         return { ...prevState }
@@ -107,16 +122,19 @@ export const CartDrawer = (props: CartDrawerProps) => {
                                   <ListItemAvatar>
                                     <Avatar>
                                       <IconButton
+                                       disabled={stock}
                                         onClick={
                                           () => cartModify(info[0], info[1], key, 1)
-                                        }>
+                                        }
+                                   
+                                        >
                                         <ArrowDropUpIcon
                                         />
                                       </IconButton>
                                     </Avatar>
 
                                     <Avatar>
-                                      <IconButton>
+                                      <IconButton  disabled={stock}>
                                         <ArrowDropDownIcon
                                           onClick={() => info[1](prevState => {
                                             prevState[key] = info[0][key] - 1
@@ -145,21 +163,55 @@ export const CartDrawer = (props: CartDrawerProps) => {
                   <Grid item xs={12}>
                     <Demo>
                       <List >
+                        {stock ?
+                         <ListItem
+                         secondaryAction={
+                           <ButtonComponent
+                           disabled={stock}
+                           >
+                             <p>Checkout</p>
+                           </ButtonComponent>
+                         }
+                       ><ListItemText
+                          primary="Items out of stock"
+                          secondaryTypographyProps={{color: "red"}}
+                          secondary={getCartSize(info[0]) +" items"}
+                        />
+                         <ListItemText
+                           primary={getCartTotal(info[0])}
+                         />
+                       </ListItem>
+                        :
                         <ListItem
-                          secondaryAction={
-                            <ButtonComponent>
-                              <p>Checkout</p>
-                            </ButtonComponent>
-                          }
-                        >
-                          <ListItemText
-                            primary="Total"
-                            secondary={getCartSize(info[0]) +" items"}
-                          />
-                          <ListItemText
-                            primary={getCartTotal(info[0])}
-                          />
-                        </ListItem>
+                        secondaryAction={
+                          <ButtonComponent
+                          onClick={() => {
+                            setBuffering(true)
+                            setTimeout(() => {
+                              setStock(true)
+                              setBuffering(false)
+                              alertCallback("Something went wrong. Sorry for the inconvenience", "error")
+                            }, 2500);
+                            }}
+                          >
+                            <p>Checkout</p>
+                          </ButtonComponent>
+                        }
+                      >
+
+                        <ListItemText
+                          primary="Total"
+
+                          secondary={getCartSize(info[0]) +" items"}
+                        />
+
+                        <ListItemText
+                          primary={getCartTotal(info[0])}
+                        />
+                      </ListItem>
+                      
+                      }
+                       
 
                       </List>
                     </Demo>
