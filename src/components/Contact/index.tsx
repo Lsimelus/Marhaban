@@ -39,7 +39,7 @@ export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) 
       alertCallback("Connecting to API. This may take a second.", "info")
 
 
-      axios.post(`https://portfolio-webapp-pf4y.onrender.com/processform`, {
+      axios.post(`https://personal-api-lwmg.onrender.com/processform`, {
         name: name,
         email: email,
         message: message,
