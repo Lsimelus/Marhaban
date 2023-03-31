@@ -159,7 +159,7 @@ export const Explore = (props: ExploreProps) => {
                           color: "blue",
                         },
                       }}>
-                      <b><a href={info.url}>{info.title}</a></b>
+                      <b><a target="_blank" href={info.url}>{info.title}</a></b>
                     </Typography>
 
                     {info.description &&
