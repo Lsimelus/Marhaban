@@ -12,7 +12,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Grid from '@mui/material/Grid';
-import test from "../../assets/test.jpg"
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import { Item } from '../../styles/Item';
@@ -24,6 +23,7 @@ import { products } from '../../data/data';
 import { getCartSize, getCartTotal } from "../../utils/cartUtil"
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+
 
 
 const Demo = styled('div')(({ theme }) => ({
@@ -81,13 +81,15 @@ export const CartDrawer = (props: CartDrawerProps) => {
                   <Grid item xs={12} m={2}>
                     <Demo>
                       <List >
-                        {Object.keys(info[0]).map(function(data: any) {
+                        {Object.keys(info[0]).map(function(data: string) {
                           let productCart = info[0]
                           let key = data as productIds
                           let currAmount = productCart[key]
 
                           if (currAmount > 0) {
                             let currProduct = products[key]
+                            console.log("~~~~~~~~~~")
+                            console.log(currProduct)
                             return (
                               <Item style={{ margin: 10 }}>
                                 <ListItem
@@ -111,7 +113,7 @@ export const CartDrawer = (props: CartDrawerProps) => {
                                   }
                                 >
                                   <ListItemAvatar>
-                                    <Avatar src={test}>
+                                    <Avatar src={currProduct["img"]}>
                                     </Avatar>
                                   </ListItemAvatar>
                                   <ListItemText
@@ -211,8 +213,7 @@ export const CartDrawer = (props: CartDrawerProps) => {
                       </ListItem>
                       
                       }
-                       
-
+                      
                       </List>
                     </Demo>
                   </Grid>

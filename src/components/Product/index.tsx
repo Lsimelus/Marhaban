@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import test from "../../assets/test.jpg"
 import {
   ProductActionsWrapper,
   ProductBox,
@@ -27,10 +26,11 @@ type ProductsProps = {
 
 
 export const Product = (props: ProductsProps) => {
-  const { data } = props;
+  const { data , image} = props;
   const [showDetails, setShowDetails] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
   let [cart, setCart]  = React.useContext(CartContext)
+
 
   const addToCart = () => {
     var id: productIds  = data.id
@@ -45,8 +45,8 @@ export const Product = (props: ProductsProps) => {
   return (
     <div onMouseLeave={() => setShowDetails(false)}>
       <ProductBox >
-        <ProductModal img={test} data={data} getModal={modalOpen} setModal={setModalOpen} />
-        <ProductImage src={test}></ProductImage>
+        <ProductModal img={image} data={data} getModal={modalOpen} setModal={setModalOpen} />
+        <ProductImage src={image}></ProductImage>
         <ProductActionsWrapper>
           <Stack direction={"column"}>
             <Tooltip title="Expand view" placement="right">
@@ -78,7 +78,7 @@ export const Product = (props: ProductsProps) => {
         <b>
           Who is this for?
         </b>
-        <p>ffthcycfygjcvb ghjgjmb hmbj hgjb gfhvb hgnb ghnhvb hgvn </p>
+        <p>{data["desc"]} </p>
       </ProductDiv>
 
       <ButtonComponent onClick={() => addToCart()} startIcon={<AddShoppingCartIcon />}><p>Add to Cart</p></ButtonComponent>
