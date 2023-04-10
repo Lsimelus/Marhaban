@@ -3,6 +3,7 @@ import begin from "../assets/begin.png"
 import ramadan from "../assets/ramadan.png"
 import deep from "../assets/deep.png"
 
+export const desc = "Introducing the Marhaban Package, designed specifically for those who have recently embraced Islam. This comprehensive package contains everything you need to start your new journey with ease and comfort. Whether you chose Islam with the support of friends and family or alone, our package is designed to provide you with the necessary tools to navigate your new lifestyle. \n \nChoosing Islam is a significant lifestyle change, and we understand that the transition can be overwhelming. Our Marhaban is designed to provide comfort and support to those who may not know where to start, but it's also suitable for anyone seeking to deepen their understanding of the religion. Our aim is to provide a seamless transition into the Islamic way of life by offering a comprehensive package that includes essential resources and materials. \n \nOur package includes an English translation of the Quran, a guidebook on Islamic practices and rituals, a prayer rug, a hijab for women, and more. We believe that our package will not only provide comfort but also help new Muslims establish a strong foundation for their new journey. \n \nIn addition to our standard New Muslim Welcome Package, we will also offer limited edition versions of the package and other items during the holy month of Ramadan, Hajj and Umrah pilgrimage, and Eid celebrations. These limited edition packages will contain exclusive items and resources to enhance your Ramadan, Hajj/Umrah, and Eid experience. \n \nOur goal is to make the exploration of Islam as smooth and comfortable as possible, and we hope that our New Muslim Welcome Package will provide the support and guidance needed to start this new journey with confidence. Anyone can order our package, and we welcome all who are looking to learn and grow in their faith. Keep an eye out for our limited edition packages underway! \n"
 export const verses = [
     ["ٱلْحَمْدُ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ", 'Praise be to Allah, the Lord of the Universe', ""],
     ["قُلۡ اِنَّ هُدَى اللّٰهِ هُوَ الۡهُدٰى", 'Indeed the only guidance is Allah’s Guidance!', 'Al-Quran 6:7'],
@@ -75,11 +76,41 @@ export const products: product = {
 }
 
 export const faq = [
-    ["What is Marhaban?", "Marhaban is a non-profit website whose primary focus is expanding the beautiful religion of Islam. The website shares trustworthy news from non-Western news outlet for various Islamic-Countries. The site also congregates items and resources that one may need on their journey towards Islam and offers them in different packages."],
-    ["What is Ramadan?", "Ramadan is the ninth month of the Islamic calendar, observed by Muslims worldwide as a month of fasting, prayer, and reflection. It is one of the Five Pillars of Islam, which are the basic tenets of the faith. During Ramadan, Muslims abstain from food, drink, smoking, and sexual activity from dawn until sunset. They also increase their prayer and engage in acts of charity and kindness. The fast is broken at sunset with a meal called iftar, and it is customary to share this meal with family and friends."],
-    ["What if I only want one item from a package?", "By clicking the expand view button on the package image, you can see all of the items listed. By clicking the item, a page will open up where you can buy the item yourself."],
-    ["Don't see your question?", "Feel free to ask any question you want on the contact page."]
-   ]
+    ["What is Marhaban?",
+        '"Marhaban" is an Arabic word that translates to "welcome" in English. It is a common greeting used by Muslims to welcome others, and we have named our New Muslim Welcome Package after this greeting to symbolize our commitment to welcoming new Muslims to the faith and supporting them on their journey.'
+    ],
+    ["What is Ramadan?",
+        "Ramadan is the ninth month of the Islamic lunar calendar, during which Muslims fast from sunrise to sunset each day. It is considered a holy month in Islam, and during this time, Muslims focus on prayer, reflection, and acts of charity. Our business offers limited edition packages and resources during Ramadan to enhance the Ramadan experience for our customers, including exclusive items and resources to support their spiritual growth and connection during this holy month."],
+    ["What is included in the Marhaban package?",
+        "The Marhaban package includes an English translation of the Quran, a guidebook on Islamic practices and rituals, a prayer rug, a hijab/kufi, and more. You can find the full list of contents on our website."
+    ],
+    ["Can I purchase the Marhaban package as a gift for someone else?",
+        "Yes, the Marhaban package makes a great gift for someone who has recently embraced Islam or anyone who is interested in learning more about the religion."
+    ],
+    ["Do you offer international shipping for the Marhaban package?",
+        "Yes, we offer international shipping for our products, although shipping times and fees may vary depending on your location."]
+    ,
+    ["Is the Marhaban package suitable for those who have been Muslim for a long time?",
+        "While the Marhaban package is designed specifically for new Muslims, it can be a helpful resource for anyone seeking to deepen their understanding of the religion."]
+    ,
+    ["What kind of limited edition packages do you offer during Ramadan, Hajj/Umrah, and Eid? ",
+        "During Ramadan, Hajj/Umrah, and Eid, we offer limited edition packages that include exclusive items and resources to enhance your spiritual experience during these holy occasions. You can stay updated on the availability of these packages by subscribing to our newsletter or following us on social media."]
+    , [
+        "Can I make changes to the contents of the Marhaban package? ",
+        "At this time, we do not offer the option to make changes to the contents of the Marhaban package, as it is designed to provide a comprehensive and well-rounded introduction to Islam."
+    ],
+    ["How can I access customer support if I have any questions or concerns? ",
+        "If you have any questions or concerns about your purchase, you can reach out to our customer support team via email or phone. We strive to provide prompt and helpful assistance to all of our customers."
+    ],
+    ["Do you offer discounts or promotions on your products? ",
+        "From time to time or on holidays, we may offer discounts or promotions on our products. You can stay updated on these offers by subscribing to our newsletter or following us on social media."],
+    ["What if I only want one item from a package?",
+        "By clicking the expand view button on the package image, you can see all of the items listed. By clicking the item, a page will open up where you can buy the item yourself."
+    ],
+    ["Don't see your question?",
+        "Feel free to ask any question you want on the contact page."]
+]
+
 export const explore = {
     "title": "Find out what is going in Muslim countries around the world",
     "category": [

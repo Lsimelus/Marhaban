@@ -15,8 +15,6 @@ type ContactProps = {
   alertCallback: Function
 }
 
-
-
 export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) => {
   const { alertCallback } = props;
   const [name, setName] = React.useState("");
@@ -38,7 +36,6 @@ export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) 
       setBuffering(true)
       alertCallback("Connecting to API. This may take a second.", "info")
 
-
       axios.post(`https://personal-api-lwmg.onrender.com/processform`, {
         name: name,
         email: email,
@@ -53,7 +50,6 @@ export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) 
           alertCallback("Something went wrong. Sorry for the inconvenience", "error")
           setBuffering(false)
         });
-
     }
   }
 
@@ -103,7 +99,6 @@ export const Contact = React.forwardRef<HTMLElement, ContactProps>((props, ref) 
               display="flex"
               justifyContent="space-between"
             >
-
               {formDone ?
                 <CheckCircleIcon sx={{
                   fontSize: 60,

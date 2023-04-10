@@ -14,7 +14,6 @@ type FooterProps = {
 }
 
 export const Footer = (props: FooterProps) => {
-    const { } = props;
     const location = useLocation();
     const [onContact, setOnContact] = React.useState(false)
     const [display, setDisplay] = React.useState(false)

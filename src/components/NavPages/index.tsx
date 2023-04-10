@@ -6,7 +6,6 @@ import {
     Link,
     useLocation,
 } from "react-router-dom";
-
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -19,20 +18,8 @@ import HelpIcon from '@mui/icons-material/Help';
 
 
 
-
-
 const drawerWidth = 240;
 
-
-
-const DrawerHeader = styled('div')(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-}));
 
 
 const navPages: any[][] = [["Home", "/",  <HomeIcon/>], ["FAQ", "/faq", <HelpIcon/>], ["Shop", "/shop", <ShoppingBasketIcon/>],["Explore", "/explore",  <ExploreIcon/>], ["Contact", "/contact", <ContactsIcon/>]]

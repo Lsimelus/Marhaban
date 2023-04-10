@@ -11,17 +11,23 @@ type ButtonComponentProps = {
     background?: string,
     key?: number,
     variant?: "contained" | "outlined" | "text",
-    disabled?: boolean
+    disabled?: boolean,
+    opacity?: number
   }
   
   export const ButtonComponent = (props: ButtonComponentProps) => {
-    const { startIcon, onClick, text, children, background, key, disabled=false,variant = "contained" } = props;
+    const { startIcon, onClick, text, children, background, key, disabled=false,variant = "contained", opacity=1 } = props;
   
     return (
       <StyledButton
       key={key}
-        style={{
-          background: background
+        sx={{
+          background: background,
+          opacity: opacity,
+          ':hover': {
+            opacity: 1,
+          },
+        
         }}
         variant={variant}
         startIcon={startIcon}

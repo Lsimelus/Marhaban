@@ -13,7 +13,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Divider from '@mui/material/Divider';
 import axios from 'axios';
 import Box from '@mui/material/Box';
-import CloseIcon from "@mui/icons-material/Close";
 import { IconButton } from '@mui/material';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
@@ -123,14 +122,10 @@ export const Explore = (props: ExploreProps) => {
                     />
                   </IconButton>
                 </Box>
-
               }
             </Grid>
-
           </Grid>
         </Item>
-
-
 
 
         {data && Object.keys(data).length > 0 &&
@@ -173,8 +168,6 @@ export const Explore = (props: ExploreProps) => {
                 </Grid>
               )
             })}
-
-
           </Grid>
         }
       </Grid>
